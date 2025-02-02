@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  backend:
+    build:
+      context: ./file-sharing-backend
+    container_name: nestjs-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    # depends_on:
+    #   - db
+
+  frontend:
+    build:
+      context: ./file-sharing-frontend
+    container_name: react-frontend
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+  #   db:
+  #     image: sqlite
+  #     container_name: sqlite-db
+  #     volumes:
+  #       - sqlite-data:/data
+  #     environment:
+  #       - SQLITE_DATABASE=data/db.sqlite
+
+  # volumes:
+  #   sqlite-data:
+  #     driver: local
